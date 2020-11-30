@@ -10,11 +10,29 @@ from os.path import basename
 from os.path import dirname
 from os.path import join
 from os.path import splitext
+from functools import wraps
 
 from setuptools import find_packages
 from setuptools import setup
 
+from ast import literal_eval
+import os
+DOCKER_DEV = literal_eval(os.environ.get("DEV_CSCI_UTILS", "0"))
 
+
+def safe_dev_read(func):
+    @wraps(func)
+    def wrapper(*a, **k):
+        try:
+            return func(*a, **k)
+        except FileNotFoundError:
+            if DOCKER_DEV:
+                return ""
+            raise
+    return wrapper
+
+
+@safe_dev_read
 def read(*names, **kwargs):
     with io.open(
         join(dirname(__file__), *names),
@@ -29,7 +47,7 @@ setup(
         'local_scheme': 'dirty-tag',
         'write_to': 'src/tensorfree/_version.py',
         'fallback_version': '0.0.0',
-    },
+    } if not DOCKER_DEV else False,
     license='MIT',
     description='Update this a little later',
     long_description='%s\n%s' % (
@@ -53,32 +71,25 @@ setup(
         'Operating System :: POSIX',
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy',
-        # uncomment if you test on these interpreters:
-        # 'Programming Language :: Python :: Implementation :: IronPython',
-        # 'Programming Language :: Python :: Implementation :: Jython',
-        # 'Programming Language :: Python :: Implementation :: Stackless',
         'Topic :: Utilities',
     ],
     project_urls={
-        'Documentation': 'https://tensorfree.readthedocs.io/',
-        'Changelog': 'https://tensorfree.readthedocs.io/en/latest/changelog.html',
         'Issue Tracker': 'https://github.com/andrew-alm/tensorfree/issues',
     },
     keywords=[
-        # eg: 'keyword1', 'keyword2', 'keyword3',
+        'image classification', 'tensorflow', 'keras'
     ],
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
+    python_requires='>=3.5',
     install_requires=[
-        # eg: 'aspectlib==1.1.1', 'six>=1.7',
+        'atomicwrites',
+        'tensorflow',
+        'numpy'
     ],
     extras_require={
         # eg:
