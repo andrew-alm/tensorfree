@@ -3,53 +3,14 @@ Overview
 ========
 
 .. start-badges
-
-.. list-table::
-    :stub-columns: 1
-
-    * - docs
-      - |docs|
-    * - tests
-      - | |travis|
-        |
-        | |codeclimate|
-    * - package
-      - | |version| |wheel| |supported-versions| |supported-implementations|
-        | |commits-since|
-.. |docs| image:: https://readthedocs.org/projects/tensorfree/badge/?style=flat
-    :target: https://readthedocs.org/projects/tensorfree
-    :alt: Documentation Status
-
-.. |travis| image:: https://api.travis-ci.org/andrew-alm/tensorfree.svg?branch=master
-    :alt: Travis-CI Build Status
-    :target: https://travis-ci.org/andrew-alm/tensorfree
-
-.. |codeclimate| image:: https://codeclimate.com/github/andrew-alm/tensorfree/badges/gpa.svg
-   :target: https://codeclimate.com/github/andrew-alm/tensorfree
-   :alt: CodeClimate Quality Status
-
-.. |version| image:: https://img.shields.io/pypi/v/tensorfree.svg
-    :alt: PyPI Package latest release
-    :target: https://pypi.org/project/tensorfree
-
-.. |wheel| image:: https://img.shields.io/pypi/wheel/tensorfree.svg
-    :alt: PyPI Wheel
-    :target: https://pypi.org/project/tensorfree
-
-.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/tensorfree.svg
-    :alt: Supported versions
-    :target: https://pypi.org/project/tensorfree
-
-.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/tensorfree.svg
-    :alt: Supported implementations
-    :target: https://pypi.org/project/tensorfree
-
-.. |commits-since| image:: https://img.shields.io/github/commits-since/andrew-alm/tensorfree/v0.0.0.svg
-    :alt: Commits since latest release
-    :target: https://github.com/andrew-alm/tensorfree/compare/v0.0.0...master
-
-
-
+.. image:: https://travis-ci.com/andrew-alm/tensorfree.svg?branch=master
+    :target: https://travis-ci.com/andrew-alm/tensorfree
+.. image:: https://api.codeclimate.com/v1/badges/119b0928e6f2a18b0c01/maintainability
+   :target: https://codeclimate.com/github/andrew-alm/tensorfree/maintainability
+   :alt: Maintainability
+.. image:: https://api.codeclimate.com/v1/badges/119b0928e6f2a18b0c01/test_coverage
+   :target: https://codeclimate.com/github/andrew-alm/tensorfree/test_coverage
+   :alt: Test Coverage
 .. end-badges
 
 Update this a little later
