@@ -9,15 +9,6 @@ env:
     - LANG=en_US.UTF-8
 matrix:
   include:
-    - python: '3.6'
-      env:
-        - TOXENV=check
-    - python: '3.6'
-      env:
-        - TOXENV=docs
-    - env:
-        - TOXENV=py27
-      python: '2.7'
     - env:
         - TOXENV=py35
       python: '3.5'
@@ -30,6 +21,15 @@ matrix:
     - env:
         - TOXENV=py38
       python: '3.8'
+      install:
+        - pipenv install --dev  --deploy --ignore-pipfile
+      before_script:
+         - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+         - chmod +x ./cc-test-reporter
+         - ./cc-test-reporter before-build
+      script: pytest --cov-report xml --cov-report term
+      after_script:
+        - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
     - env:
         - TOXENV=py39
       python: '3.9'
@@ -40,12 +40,18 @@ matrix:
         - TOXENV=pypy3
         - TOXPYTHON=pypy3
       python: 'pypy3'
+
+stages:
+  - test
+  - name: tox
+    if: branch = master
+
 before_install:
   - python --version
   - uname -a
   - lsb_release -a || true
 install:
-  - python -mpip install --progress-bar=off tox -rci/requirements.txt
+  - python -mpip install --progress-bar=off tox-travis -rci/requirements.txt
   - virtualenv --version
   - easy_install --version
   - pip --version
