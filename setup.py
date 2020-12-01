@@ -89,6 +89,7 @@ setup(
     install_requires=[
         'atomicwrites',
         'tensorflow',
+        'keras',
         'numpy'
     ],
     extras_require={
