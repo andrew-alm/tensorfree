@@ -1,5 +1,5 @@
 class PreTrainFactory:
-    """The model factory used to assign a construct different models.
+    """The model factory used to assign and construct different models.
     Thanks to Real Python's Factory Method tutorial for guidance on
     getting this to work.
 
