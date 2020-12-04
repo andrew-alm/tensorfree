@@ -74,8 +74,8 @@ class InternalsTests(TestCase):
             self.assertEqual(Path(file).suffixes[0], ".jpg")
 
 
-class LabelTests(TestCase):
-    """Tests for model.label() feature."""
+class DenseLabelTests(TestCase):
+    """Tests for densenet.label() feature."""
 
     def setUp(self) -> None:
         """Create a new model, lets go with DenseNet this time"""
@@ -96,6 +96,96 @@ class LabelTests(TestCase):
         with self.assertRaises(ValueError):
             self.model._photo_store = None
             self.model.label()
+
+    def test_label(self):
+        """Test that label will run through a directory and process images"""
+        with TemporaryDirectory() as tempdir:
+            # Add fake images to temp directory
+            self.image1.save(tempdir + "/image1.jpg")
+            self.image2.save(tempdir + "/image2.jpg")
+            self.image3.save(tempdir + "/image3.jpg")
+
+            testdir = os.path.join(tempdir, "tests")
+            os.mkdir(testdir)
+
+            # Set model get and save locations, run
+            self.model.get_photos(tempdir)
+            self.model.save_photos(testdir)
+            self.model.label()
+
+            self.assertEqual(len(os.listdir(testdir)), 3)
+
+
+class NASLabelTests(TestCase):
+    """Tests for nasnet.label() feature."""
+
+    def setUp(self) -> None:
+        """Create a new model, lets go with DenseNet this time"""
+        self.model = pretrain.factory.create("NASNetLarge")
+
+        self.image1 = Image.new("RGB", (800, 600), color="blue")
+        self.image2 = Image.new("RGB", (800, 600), color="yellow")
+        self.image3 = Image.new("RGB", (200, 200), color="red")
+
+    def test_label(self):
+        """Test that label will run through a directory and process images"""
+        with TemporaryDirectory() as tempdir:
+            # Add fake images to temp directory
+            self.image1.save(tempdir + "/image1.jpg")
+            self.image2.save(tempdir + "/image2.jpg")
+            self.image3.save(tempdir + "/image3.jpg")
+
+            testdir = os.path.join(tempdir, "tests")
+            os.mkdir(testdir)
+
+            # Set model get and save locations, run
+            self.model.get_photos(tempdir)
+            self.model.save_photos(testdir)
+            self.model.label()
+
+            self.assertEqual(len(os.listdir(testdir)), 3)
+
+
+class InceptionLabelTests(TestCase):
+    """Tests for InceptionResNetV2.label() feature."""
+
+    def setUp(self) -> None:
+        """Create a new model, lets go with DenseNet this time"""
+        self.model = pretrain.factory.create("InceptionResNetV2")
+
+        self.image1 = Image.new("RGB", (800, 600), color="blue")
+        self.image2 = Image.new("RGB", (800, 600), color="yellow")
+        self.image3 = Image.new("RGB", (200, 200), color="red")
+
+    def test_label(self):
+        """Test that label will run through a directory and process images"""
+        with TemporaryDirectory() as tempdir:
+            # Add fake images to temp directory
+            self.image1.save(tempdir + "/image1.jpg")
+            self.image2.save(tempdir + "/image2.jpg")
+            self.image3.save(tempdir + "/image3.jpg")
+
+            testdir = os.path.join(tempdir, "tests")
+            os.mkdir(testdir)
+
+            # Set model get and save locations, run
+            self.model.get_photos(tempdir)
+            self.model.save_photos(testdir)
+            self.model.label()
+
+            self.assertEqual(len(os.listdir(testdir)), 3)
+
+
+class VGGLabelTests(TestCase):
+    """Tests for VGG19.label() feature."""
+
+    def setUp(self) -> None:
+        """Create a new model, lets go with DenseNet this time"""
+        self.model = pretrain.factory.create("VGG19")
+
+        self.image1 = Image.new("RGB", (800, 600), color="blue")
+        self.image2 = Image.new("RGB", (800, 600), color="yellow")
+        self.image3 = Image.new("RGB", (200, 200), color="red")
 
     def test_label(self):
         """Test that label will run through a directory and process images"""
