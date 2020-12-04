@@ -76,7 +76,7 @@ class PredictiveModel:
         if len(image.shape) == 3:
             image = np.expand_dims(image, axis=0)
 
-        predictions = self._pretrained(image)
+        predictions = self.get_pretrained(image)
         return predictions
 
     @logger
@@ -107,9 +107,15 @@ class NASNetBuilder(PredictiveModel):
 
     def __init__(self):
         super().__init__()
-        self._pretrained = kapps.nasnet.NASNetLarge(weights="imagenet")
-        self._process_predictions = kapps.nasnet.decode_predictions
         self._image_size = 331
+
+    @property
+    def get_pretrained(self):
+        """Only download layers and predictions if model is instantiated, not registered"""
+        if self._pretrained is None:
+            self._pretrained = kapps.nasnet.NASNetLarge(weights="imagenet")
+            self._process_predictions = kapps.nasnet.decode_predictions
+        return self._pretrained
 
 
 class DenseNetBuilder(PredictiveModel):
@@ -117,9 +123,15 @@ class DenseNetBuilder(PredictiveModel):
 
     def __init__(self):
         super().__init__()
-        self._pretrained = kapps.densenet.DenseNet201(weights="imagenet")
-        self._process_predictions = kapps.densenet.decode_predictions
         self._image_size = 224
+
+    @property
+    def get_pretrained(self):
+        """Only download layers and predictions if model is instantiated, not registered"""
+        if self._pretrained is None:
+            self._pretrained = kapps.densenet.DenseNet201(weights="imagenet")
+            self._process_predictions = kapps.densenet.decode_predictions
+        return self._pretrained
 
 
 class MobileNetBuilder(PredictiveModel):
@@ -127,9 +139,15 @@ class MobileNetBuilder(PredictiveModel):
 
     def __init__(self):
         super().__init__()
-        self._pretrained = kapps.mobilenet_v2.MobileNetV2(weights="imagenet")
-        self._process_predictions = kapps.mobilenet_v2.decode_predictions
         self._image_size = 224
+
+    @property
+    def get_pretrained(self):
+        """Only download layers and predictions if model is instantiated, not registered"""
+        if self._pretrained is None:
+            self._pretrained = kapps.mobilenet_v2.MobileNetV2(weights="imagenet")
+            self._process_predictions = kapps.mobilenet_v2.decode_predictions
+        return self._pretrained
 
 
 class InceptionBuilder(PredictiveModel):
@@ -137,11 +155,17 @@ class InceptionBuilder(PredictiveModel):
 
     def __init__(self):
         super().__init__()
-        self._pretrained = kapps.inception_resnet_v2.InceptionResNetV2(
-            weights="imagenet"
-        )
-        self._process_predictions = kapps.inception_resnet_v2.decode_predictions
         self._image_size = 299
+
+    @property
+    def get_pretrained(self):
+        """Only download layers and predictions if model is instantiated, not registered"""
+        if self._pretrained is None:
+            self._pretrained = kapps.inception_resnet_v2.InceptionResNetV2(
+                weights="imagenet"
+            )
+            self._process_predictions = kapps.inception_resnet_v2.decode_predictions
+        return self._pretrained
 
 
 class VGGBuilder(PredictiveModel):
@@ -149,9 +173,15 @@ class VGGBuilder(PredictiveModel):
 
     def __init__(self):
         super().__init__()
-        self._pretrained = kapps.vgg19.VGG19(weights="imagenet")
-        self._process_predictions = kapps.vgg19.decode_predictions
         self._image_size = 224
+
+    @property
+    def get_pretrained(self):
+        """Only download layers and predictions if model is instantiated, not registered"""
+        if self._pretrained is None:
+            self._pretrained = kapps.vgg19.VGG19(weights="imagenet")
+            self._process_predictions = kapps.vgg19.decode_predictions
+        return self._pretrained
 
 
 # Register Model w/ Factory
