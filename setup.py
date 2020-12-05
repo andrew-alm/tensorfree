@@ -17,7 +17,7 @@ from setuptools import setup
 
 from ast import literal_eval
 import os
-DOCKER_DEV = literal_eval(os.environ.get("DEV_CSCI_UTILS", "0"))
+DOCKER_DEV = literal_eval(os.environ.get("DEV_TENSORFREE", "0"))
 
 
 def safe_dev_read(func):
@@ -72,11 +72,9 @@ setup(
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
         'Topic :: Utilities',
     ],
     project_urls={
@@ -85,7 +83,7 @@ setup(
     keywords=[
         'image classification', 'tensorflow', 'keras'
     ],
-    python_requires='>=3.5',
+    python_requires='>=3.6',
     install_requires=[
         'tensorflow',
         'keras',
