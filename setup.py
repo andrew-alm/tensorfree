@@ -87,10 +87,10 @@ setup(
     ],
     python_requires='>=3.5',
     install_requires=[
-        'atomicwrites',
         'tensorflow',
         'keras',
-        'numpy'
+        'numpy',
+        'pillow'
     ],
     extras_require={
         # eg:
