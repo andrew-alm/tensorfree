@@ -12,6 +12,7 @@ import tensorflow.keras.applications as kapps
 
 from tensorfree.utils.preprocess import image_sizing
 from tensorfree.utils.label import label_generator
+from tensorfree.utils.wrappers import run_logger
 
 
 class ImageProcTests(TestCase):
@@ -93,3 +94,18 @@ class LabelTests(TestCase):
             fake_predictions, kapps.mobilenet_v2.decode_predictions, "random.png"
         )
         self.assertEqual(fake_label, generated)
+
+
+class LogTests(TestCase):
+    """Test for wrapper module."""
+
+    def test_logger(self):
+        """Create a simple function and confirm logs are generated when called"""
+
+        @run_logger
+        def simple_func():
+            pass
+
+        simple_func()
+        self.assertTrue(os.path.exists("tensorfree.log"))
+        os.remove('tensorfree.log')
