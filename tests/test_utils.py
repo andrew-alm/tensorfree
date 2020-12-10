@@ -96,16 +96,3 @@ class LabelTests(TestCase):
         self.assertEqual(fake_label, generated)
 
 
-class LogTests(TestCase):
-    """Test for wrapper module."""
-
-    def test_logger(self):
-        """Create a simple function and confirm logs are generated when called"""
-
-        @run_logger
-        def simple_func():
-            pass
-
-        simple_func()
-        self.assertTrue(os.path.exists("tensorfree.log"))
-        os.remove('tensorfree.log')
