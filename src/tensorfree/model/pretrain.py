@@ -5,7 +5,7 @@ import tensorflow.keras.applications as kapps
 from tensorfree.model.pretrain_factory import PreTrainFactory
 from tensorfree.utils.preprocess import image_sizing
 from tensorfree.utils.label import label_generator
-from tensorfree.utils.wrappers import logger
+from tensorfree.utils.wrappers import run_logger
 
 
 class PredictiveModel:
@@ -79,7 +79,7 @@ class PredictiveModel:
         predictions = self.get_pretrained(image)
         return predictions
 
-    @logger
+    @run_logger
     def _run_tensorfree(self, image_path, save_location) -> None:
         """This method will take a single image, preprocess it, get the predicted class,
         generate a new label, and then copy it to the requested directory.
