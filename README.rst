@@ -13,7 +13,7 @@ Overview
    :alt: Test Coverage
 .. end-badges
 
-Update this a little later
+Tensorfree is an image classification library that provides quick and easy access to some of the latest SOTA models. Simply install, define the location of your photos and let it do everything for you.
 
 * Free software: MIT license
 
