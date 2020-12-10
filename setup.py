@@ -89,7 +89,8 @@ setup(
         'tensorflow',
         'keras',
         'numpy',
-        'pillow'
+        'pillow',
+        'setuptools_scm'
     ],
     extras_require={
     },
