@@ -16,4 +16,5 @@ precision = 2
 omit =
     *migrations*
     *src/tensorfree/__init__.py
-
+    *src/tensorfree/model/__init__.py
+    *src/tensorfree/utils/__init__.py
