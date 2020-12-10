@@ -6,7 +6,7 @@
 
 Tensorfree is an image classification library that provides quick and easy access to some of the latest SOTA models. Simply install, define the location of your photos and let it do everything for you.
 
-## Installation (Coming Soon)
+## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 
