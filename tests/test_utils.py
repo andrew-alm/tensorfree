@@ -5,7 +5,6 @@
 
 import os
 from PIL import Image
-from tempfile import TemporaryDirectory
 from unittest import TestCase
 from hashlib import sha1
 import numpy as np
