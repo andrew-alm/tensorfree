@@ -49,7 +49,7 @@ setup(
         'fallback_version': '0.0.0',
     } if not DOCKER_DEV else False,
     license='MIT',
-    description='Update this a little later',
+    description='Tensorfree is an image classification library that provides quick and easy access to some of the latest SOTA models. Simply install, define the location of your photos and let it do everything for you.',
     long_description='%s\n%s' % (
         re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
