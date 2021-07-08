@@ -8,7 +8,7 @@ Tensorfree is an image classification library that provides quick and easy acces
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Tensorfree.
 
 ```bash
 pip install tensorfree
