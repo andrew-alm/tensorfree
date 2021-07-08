@@ -84,9 +84,9 @@ setup(
     keywords=[
         'image classification', 'tensorflow', 'keras'
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.8',
     install_requires=[
-        'tensorflow',
+        'tensorflow==2.4.2',
         'keras',
         'numpy',
         'pillow',
